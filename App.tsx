@@ -7,41 +7,70 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
-
-import {Colors} from 'react-native/Libraries/NewAppScreen';
 import 'react-native-gesture-handler';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import HoneScreen from './src/HomeScreen';
 import DetailScreen from './src/DetailScreen';
 import {NavigationContainer} from '@react-navigation/native';
-
-const Tab = createBottomTabNavigator();
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {StyleSheet} from 'react-native';
+const Tab = createMaterialBottomTabNavigator();
 
 const App: React.FC = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HoneScreen} />
-        <Tab.Screen name="Settings" component={DetailScreen} />
+      <Tab.Navigator
+        initialRouteName="Settings"
+        activeColor="#B300F0"
+        inactiveColor="gray"
+        barStyle={styles.tabbar}>
+        <Tab.Screen
+          name="Home"
+          component={HoneScreen}
+          options={{
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="home-edit-outline"
+                color={color}
+                size={26}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Rank"
+          component={DetailScreen}
+          options={{
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="heart-flash"
+                color={color}
+                size={26}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Setting"
+          component={DetailScreen}
+          options={{
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons
+                name="format-list-bulleted"
+                color={color}
+                size={26}
+              />
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    fontSize: 50,
-    textAlign: 'center',
-    backgroundColor: 'lightgray',
+  tabbar: {
+    backgroundColor: 'white',
   },
 });
-
 export default App;
