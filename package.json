@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --simulator= Iphone SE2",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -16,6 +16,7 @@
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-gesture-handler": "^1.7.0",
+    "react-native-maps": "0.27.1",
     "react-native-paper": "^4.0.1",
     "react-native-reanimated": "^1.13.0",
     "react-native-safe-area-context": "^3.1.4",
