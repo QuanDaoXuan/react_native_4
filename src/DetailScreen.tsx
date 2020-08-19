@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   SafeAreaView,
@@ -7,6 +8,7 @@ import {
   FlatList,
   StatusBar,
 } from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 const DATA = [
@@ -25,9 +27,26 @@ const DATA = [
 ];
 
 const Item = ({itemTitle}) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{itemTitle}</Text>
-  </View>
+  <>
+    <View style={styles.item}>
+      <View
+        style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center'}}>
+        <MaterialCommunityIcons name="instagram" color={'orange'} size={26} />
+      </View>
+      <Text style={styles.title}>{itemTitle}</Text>
+      <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
+        <MaterialCommunityIcons name="chevron-right" color={'gray'} size={26} />
+      </View>
+    </View>
+    <View
+      style={{
+        backgroundColor: 'lightgray',
+        height: 1,
+        width: '100%',
+        alignSelf: 'flex-end',
+      }}
+    />
+  </>
 );
 const DetailScreen: React.FC = () => {
   const renderItem = ({item}) => <Item itemTitle={item.title} />;
@@ -44,7 +63,7 @@ const DetailScreen: React.FC = () => {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: Colors.lighter,
+    backgroundColor: 'white',
   },
   engine: {
     fontSize: 30,
@@ -54,13 +73,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    backgroundColor: 'white',
+    padding: 10,
+    flexDirection: 'row',
+    marginVertical: 0,
   },
   title: {
-    fontSize: 32,
+    flex: 5,
+    fontSize: 16,
   },
   container: {
     flex: 1,

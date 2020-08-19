@@ -28,6 +28,7 @@ const App: React.FC = () => {
           name="Home"
           component={HoneScreen}
           options={{
+            title: 'home',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons
                 name="home-edit-outline"
@@ -41,6 +42,7 @@ const App: React.FC = () => {
           name="Rank"
           component={DetailScreen}
           options={{
+            title: 'home',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons
                 name="heart-flash"
