@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const DATA = [
   {
@@ -52,23 +53,25 @@ const Item = ({itemTitle}) => (
 const DetailScreen: React.FC = ({navigation}) => {
   const renderItem = ({item}) => <Item itemTitle={item.title} />;
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <FlatList
-          data={DATA}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-        />
-      </View>
-      <View>
-        <Button
-          title="Logout"
-          onPress={() => {
-            navigation.navigate('LogoutScreen');
-          }}
-        />
-      </View>
-    </SafeAreaView>
+    <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <View>
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
+        <View>
+          <Button
+            title="Logout"
+            onPress={() => {
+              navigation.navigate('LogoutScreen');
+            }}
+          />
+        </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 

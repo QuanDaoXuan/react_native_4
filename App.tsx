@@ -9,15 +9,12 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import HoneScreen from './src/HomeScreen';
-import DetailScreen from './src/DetailScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {StyleSheet, View, Button, Text, Image} from 'react-native';
-import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
-import LogoutScreen from './src/LogoutScreen';
-import TutorialScreen from './src/Tutorial';
+import {StyleSheet} from 'react-native';
 import RankingScreen from './src/Ranking';
+import {HomeStackScreen} from './src/AppNavigation/HomeNavigator';
+import {SettingStackScreen} from './src/AppNavigation/SettingNavigator';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -75,48 +72,9 @@ const App: React.FC = () => {
   );
 };
 
-const HomeStack = createStackNavigator();
-const HomeStackScreen: React.FC = () => {
-  return (
-    <HomeStack.Navigator screenOptions={{headerBackTitleVisible: false}}>
-      <HomeStack.Screen name="Home" component={HoneScreen} />
-      <HomeStack.Screen name="TutorialScreen" component={TutorialScreen} />
-    </HomeStack.Navigator>
-  );
-};
-
-const SettingStack = createStackNavigator();
-const SettingStackScreen: React.FC = () => {
-  return (
-    <SettingStack.Navigator
-      screenOptions={{
-        headerBackTitleVisible: false,
-        headerBackImage: () => {
-          return (
-            <Image
-              style={styles.tinyLogo}
-              source={require('./src/Image/arrow_left@x2.png')}
-            />
-          );
-        },
-      }}>
-      <SettingStack.Screen name="Setting" component={DetailScreen} />
-      <SettingStack.Screen name="LogoutScreen" component={LogoutScreen} />
-    </SettingStack.Navigator>
-  );
-};
 const styles = StyleSheet.create({
   tabbar: {
     backgroundColor: 'white',
-  },
-  homeScreenContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  tinyLogo: {
-    width: 22,
-    height: 35,
   },
 });
 export default App;
