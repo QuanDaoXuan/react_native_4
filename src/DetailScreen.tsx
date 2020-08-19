@@ -12,7 +12,7 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {ScrollView} from 'react-native-gesture-handler';
-
+import {useNavigation} from '@react-navigation/native';
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -50,7 +50,8 @@ const Item = ({itemTitle}) => (
     />
   </>
 );
-const DetailScreen: React.FC = ({navigation}) => {
+const DetailScreen: React.FC = () => {
+  const navigation = useNavigation();
   const renderItem = ({item}) => <Item itemTitle={item.title} />;
   return (
     <ScrollView>
