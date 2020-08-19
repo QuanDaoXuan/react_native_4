@@ -13,8 +13,11 @@ import HoneScreen from './src/HomeScreen';
 import DetailScreen from './src/DetailScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {StyleSheet, View, Button, Text} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {StyleSheet, View, Button, Text, Image} from 'react-native';
+import {createStackNavigator, HeaderBackButton} from '@react-navigation/stack';
+import LogoutScreen from './src/LogoutScreen';
+import TutorialScreen from './src/Tutorial';
+import RankingScreen from './src/Ranking';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -42,9 +45,9 @@ const App: React.FC = () => {
         />
         <Tab.Screen
           name="Rank"
-          component={HomeScreen1}
+          component={RankingScreen}
           options={{
-            title: 'home',
+            title: 'Rank',
             tabBarIcon: ({color}) => (
               <MaterialCommunityIcons
                 name="heart-flash"
@@ -75,9 +78,9 @@ const App: React.FC = () => {
 const HomeStack = createStackNavigator();
 const HomeStackScreen: React.FC = () => {
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator screenOptions={{headerBackTitleVisible: false}}>
       <HomeStack.Screen name="Home" component={HoneScreen} />
-      <HomeStack.Screen name="Detail" component={DetailScreen} />
+      <HomeStack.Screen name="TutorialScreen" component={TutorialScreen} />
     </HomeStack.Navigator>
   );
 };
@@ -85,9 +88,20 @@ const HomeStackScreen: React.FC = () => {
 const SettingStack = createStackNavigator();
 const SettingStackScreen: React.FC = () => {
   return (
-    <SettingStack.Navigator>
+    <SettingStack.Navigator
+      screenOptions={{
+        headerBackTitleVisible: false,
+        headerBackImage: () => {
+          return (
+            <Image
+              style={styles.tinyLogo}
+              source={require('./src/Image/arrow_left@x2.png')}
+            />
+          );
+        },
+      }}>
       <SettingStack.Screen name="Setting" component={DetailScreen} />
-      <SettingStack.Screen name="setting1" component={HomeScreen1} />
+      <SettingStack.Screen name="LogoutScreen" component={LogoutScreen} />
     </SettingStack.Navigator>
   );
 };
@@ -100,17 +114,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  tinyLogo: {
+    width: 22,
+    height: 35,
+  },
 });
 export default App;
-
-const HomeScreen1: React.FC = ({navigation}) => {
-  return (
-    <View style={styles.homeScreenContainer}>
-      <Text>Home screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-};
