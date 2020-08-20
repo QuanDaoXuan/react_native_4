@@ -1,17 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import CheckBox from './CheckBox';
+
 const TodoCell = ({itemTitle}) => {
   return (
-    <>
+    <View>
       <View style={styles.container}>
         <View style={{width: 5, backgroundColor: 'red'}} />
         <View style={{width: '100%', flexDirection: 'row'}}>
           <View
             style={{
-              flex: 0.8,
+              flex: 1,
               justifyContent: 'center',
             }}>
             <CheckBox style={{marginLeft: 15, marginBottom: 12}} />
@@ -25,16 +26,20 @@ const TodoCell = ({itemTitle}) => {
               123
             </Text>
           </View>
-          <View style={{flex: 1, justifyContent: 'center'}}>
+          <TouchableOpacity
+            style={{flex: 1, justifyContent: 'center'}}
+            onPress={() => {
+              //
+            }}>
             <MaterialCommunityIcons
               name="trash-can-outline"
               color={'red'}
               size={26}
             />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
-    </>
+    </View>
   );
 };
 

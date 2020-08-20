@@ -1,11 +1,5 @@
 import React, {useState} from 'react';
-import {
-  StyleProp,
-  StyleSheet,
-  View,
-  ViewStyle,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleProp, StyleSheet, ViewStyle, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 interface Props {
   onValueChange?: (value: boolean) => void;
@@ -14,8 +8,8 @@ interface Props {
 
 const CheckBox: React.FC<Props> = ({onValueChange, style}) => {
   const [selected, setSelected] = useState<boolean>(false);
-  const backgroundColor = selected ? 'transparent' : 'transparent';
-
+  const color = selected ? 'black' : 'green';
+  const iconName = selected ? 'checkbox-blank-outline' : 'checkbox-marked';
   return (
     <TouchableOpacity
       onPress={() => {
@@ -26,11 +20,7 @@ const CheckBox: React.FC<Props> = ({onValueChange, style}) => {
         console.log(selected);
       }}
       style={[styles.touchable, style]}>
-      <View style={[styles.wrapper, {backgroundColor}]}>
-        {selected && (
-          <MaterialCommunityIcons name="check" color={'red'} size={26} />
-        )}
-      </View>
+      <MaterialCommunityIcons name={iconName} color={color} size={23} />
     </TouchableOpacity>
   );
 };
@@ -38,13 +28,6 @@ const CheckBox: React.FC<Props> = ({onValueChange, style}) => {
 const styles = StyleSheet.create({
   touchable: {
     borderRadius: 4,
-  },
-  wrapper: {
-    alignItems: 'center',
-    borderRadius: 4,
-    borderWidth: 2,
-    width: 18,
-    height: 18,
   },
 });
 
