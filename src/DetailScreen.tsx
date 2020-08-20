@@ -13,6 +13,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
+import TodoCell from './Components/TodoCell';
 const DATA = [
   {
     id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -28,55 +29,90 @@ const DATA = [
   },
 ];
 
-const Item = ({itemTitle}) => (
-  <>
-    <View style={styles.item}>
-      <View
-        style={{flex: 1, alignItems: 'flex-start', justifyContent: 'center'}}>
-        <MaterialCommunityIcons name="instagram" color={'orange'} size={26} />
-      </View>
-      <Text style={styles.title}>{itemTitle}</Text>
-      <View style={{flex: 1, alignItems: 'flex-end', justifyContent: 'center'}}>
-        <MaterialCommunityIcons name="chevron-right" color={'gray'} size={26} />
-      </View>
-    </View>
-    <View
-      style={{
-        backgroundColor: 'lightgray',
-        height: 1,
-        width: '100%',
-        alignSelf: 'flex-end',
-      }}
-    />
-  </>
-);
 const DetailScreen: React.FC = () => {
   const navigation = useNavigation();
-  const renderItem = ({item}) => <Item itemTitle={item.title} />;
+  const renderItem = ({item}) => <TodoCell itemTitle={item.title} />;
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.container}>
-        <View>
-          <FlatList
-            data={DATA}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
+    <SafeAreaView style={styles.container}>
+      <TopViewInDetail numberTodo={5} />
+      <View>
+        <FlatList
+          scrollEnabled={false}
+          data={DATA}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+      <View>
+        <Button
+          title="Logout"
+          onPress={() => {
+            navigation.navigate('LogoutScreen');
+          }}
+        />
+      </View>
+    </SafeAreaView>
+  );
+};
+
+const TopViewInDetail: React.FC = ({numberTodo}) => {
+  return (
+    <View style={styles.topView}>
+      <Text style={styles.textTitle}>{numberTodo} List</Text>
+      <Text style={{marginLeft: 20, padding: 5}}>4 more todo</Text>
+      <View style={{backgroundColor: 'lightgray', width: '100%', height: 2}} />
+      <View
+        style={{
+          flexDirection: 'row',
+          marginTop: -20,
+          justifyContent: 'flex-end',
+          // backgroundColor: 'red',
+        }}>
+        <View
+          style={{
+            backgroundColor: 'lightgray',
+            width: 40,
+            height: 40,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 20,
+          }}>
+          <MaterialCommunityIcons
+            name="microsoft-xbox-controller-menu"
+            color={'red'}
+            size={26}
           />
         </View>
-        <View>
-          <Button
-            title="Logout"
-            onPress={() => {
-              navigation.navigate('LogoutScreen');
-            }}
-          />
+        <View
+          style={{
+            backgroundColor: 'red',
+            width: 60,
+            height: 40,
+            marginLeft: 10,
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 30,
+            marginRight: 20,
+          }}>
+          <MaterialCommunityIcons name="plus" color={'white'} size={26} />
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  textTitle: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    marginLeft: 20,
+    color: 'orange',
+  },
+  topView: {
+    height: 120,
+    width: '100%',
+    backgroundColor: 'white',
+  },
   scrollView: {
     backgroundColor: 'white',
   },
@@ -100,6 +136,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight || 0,
+  },
+  row: {
+    padding: 15,
+    marginBottom: 5,
+    backgroundColor: 'skyblue',
   },
 });
 export default DetailScreen;
