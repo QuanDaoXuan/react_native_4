@@ -1,12 +1,28 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import CheckBox from './CheckBox';
-
+import {PopupConfirm} from './PopupConfirm';
 const TodoCell = ({itemTitle}) => {
+  var title = {left: 'yes', right: 'no'};
+  const [visible, setVisible] = useState<boolean>(false);
   return (
     <View>
+      <PopupConfirm
+        onPressYES={() => {
+          console.log('delete item');
+          title = {left: 'noo', right: 'yess'};
+          console.log(title);
+          setVisible(!visible);
+        }}
+        visible={visible}
+        onpressChangeState={() => {
+          setVisible(!visible);
+          console.log('onpress Call back');
+        }}
+        itemTitle={title}
+      />
       <View style={styles.container}>
         <View style={{width: 5, backgroundColor: 'red'}} />
         <View style={{width: '100%', flexDirection: 'row'}}>
@@ -29,7 +45,7 @@ const TodoCell = ({itemTitle}) => {
           <TouchableOpacity
             style={{flex: 1, justifyContent: 'center'}}
             onPress={() => {
-              //
+              setVisible(!visible);
             }}>
             <MaterialCommunityIcons
               name="trash-can-outline"

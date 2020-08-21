@@ -12,9 +12,10 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import {NavigationContainer} from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {StyleSheet} from 'react-native';
-import RankingScreen from './src/Ranking';
+// import RankingScreen from './src/Ranking';
 import {HomeStackScreen} from './src/AppNavigation/HomeNavigator';
 import {SettingStackScreen} from './src/AppNavigation/SettingNavigator';
+import {RankingStackScreen} from './src/AppNavigation/RankingNavigator';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -42,7 +43,7 @@ const App: React.FC = () => {
         />
         <Tab.Screen
           name="Rank"
-          component={RankingScreen}
+          component={RankingStackScreen}
           options={{
             title: 'Rank',
             tabBarIcon: ({color}) => (

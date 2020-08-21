@@ -1,14 +1,14 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import HomeScreen from '../HomeScreen';
+import LoginScreen from '../Screen/LoginScreen';
 import TutorialScreen from '../Tutorial';
-const HomeStack = createStackNavigator();
+const RankStack = createStackNavigator();
 
-export const HomeStackScreen: React.FC = () => {
+export const RankingStackScreen: React.FC = () => {
   return (
-    <HomeStack.Navigator screenOptions={{headerBackTitleVisible: false}}>
-      <HomeStack.Screen name="Home" component={HomeScreen} />
-      <HomeStack.Screen name="TutorialScreen" component={TutorialScreen} />
-    </HomeStack.Navigator>
+    <RankStack.Navigator screenOptions={{headerBackTitleVisible: false}}>
+      <RankStack.Screen name="Login" component={LoginScreen} />
+      <RankStack.Screen name="TutorialScreen" component={TutorialScreen} />
+    </RankStack.Navigator>
   );
 };
